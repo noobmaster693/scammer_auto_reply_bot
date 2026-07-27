@@ -70,6 +70,9 @@ class Settings:
     max_context_messages: int
     max_body_chars: int
 
+    case_context_path: str
+    case_context_extra: str
+
     ai_provider_order: tuple[str, ...]
     gemini_api_key: str
     gemini_model: str
@@ -100,8 +103,12 @@ class Settings:
             target_email_contains=os.getenv("TARGET_EMAIL_CONTAINS", "").strip().lower(),
             max_replies_per_day=_int_env("MAX_REPLIES_PER_DAY", 12),
             max_total_replies=_int_env("MAX_TOTAL_REPLIES", 30),
-            max_context_messages=_int_env("MAX_CONTEXT_MESSAGES", 16),
+            # 80 comfortably covers the whole expected thread (30 automatic replies + both sides)
+            # while still keeping the prompt modest because these emails are short.
+            max_context_messages=_int_env("MAX_CONTEXT_MESSAGES", 80),
             max_body_chars=_int_env("MAX_BODY_CHARS", 5000),
+            case_context_path=os.getenv("CASE_CONTEXT_PATH", "CASE_CONTEXT.md").strip(),
+            case_context_extra=os.getenv("CASE_CONTEXT_EXTRA", "").strip(),
             ai_provider_order=tuple(p.lower() for p in _csv_env("AI_PROVIDER_ORDER", "gemini,groq")),
             gemini_api_key=os.getenv("GEMINI_API_KEY", "").strip(),
             gemini_model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash").strip(),
@@ -146,6 +153,8 @@ class Settings:
             errors.append("MAX_REPLIES_PER_DAY must be >= 1")
         if self.max_total_replies < 1:
             errors.append("MAX_TOTAL_REPLIES must be >= 1")
+        if self.max_context_messages < 1:
+            errors.append("MAX_CONTEXT_MESSAGES must be >= 1")
         if self.poll_interval_seconds < 30:
             errors.append("POLL_INTERVAL_SECONDS must be >= 30")
         if errors:
