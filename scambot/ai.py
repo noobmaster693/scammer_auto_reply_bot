@@ -72,8 +72,8 @@ class AIResponder:
             cleaned = "\n".join(cleaned.splitlines()[1:]).strip()
         return cleaned
 
-    def generate(self, conversation: str, newest_body: str) -> tuple[str, str]:
-        prompt = build_prompt(conversation, newest_body)
+    def generate(self, case_context: str, conversation: str, newest_body: str) -> tuple[str, str]:
+        prompt = build_prompt(case_context, conversation, newest_body)
         providers: dict[str, Callable[[str], str]] = {
             "gemini": self._gemini,
             "groq": self._groq,
