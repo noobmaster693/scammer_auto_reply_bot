@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from .ai import AIResponder
+from .case_context import load_case_context
 from .config import Settings
 from .email_client import GmailClient, MailItem, render_conversation
 
@@ -18,6 +19,7 @@ class AutoReplyBot:
         self.settings = settings
         self.mail = GmailClient(settings)
         self.ai = AIResponder(settings)
+        self.case_context = load_case_context(settings)
 
     def _stop_requested(self, latest: MailItem) -> bool:
         low = latest.body.lower()
@@ -30,10 +32,19 @@ class AutoReplyBot:
 
         latest = conversation[-1]
 
+        live_context = render_conversation(
+            conversation,
+            self.mail,
+            self.settings.max_context_messages,
+        )
+
         if self.settings.log_content:
-            print("\n=== TARGET CONVERSATION ===")
-            print(render_conversation(conversation, self.mail, self.settings.max_context_messages))
-            print("=== END CONVERSATION ===\n")
+            print("\n=== STATIC CASE CONTEXT ===")
+            print(self.case_context or "(none loaded)")
+            print("=== END STATIC CASE CONTEXT ===\n")
+            print("\n=== LIVE TARGET CONVERSATION ===")
+            print(live_context)
+            print("=== END LIVE CONVERSATION ===\n")
 
         # If our own manual or bot reply is the latest message, wait for the other person.
         if self.mail.is_from_me(latest) or latest.folder_role == "sent":
@@ -54,8 +65,11 @@ class AutoReplyBot:
                 f"Total reply cap reached ({total_count}/{self.settings.max_total_replies}).",
             )
 
-        context = render_conversation(conversation, self.mail, self.settings.max_context_messages)
-        reply, provider = self.ai.generate(context, latest.body)
+        reply, provider = self.ai.generate(
+            self.case_context,
+            live_context,
+            latest.body,
+        )
 
         if reply.strip().upper() == "STOP":
             return RunResult("stopped", f"AI ({provider}) decided not to continue the conversation.")
