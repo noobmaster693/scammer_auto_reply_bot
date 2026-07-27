@@ -26,10 +26,16 @@ services:
         sync: false
       - key: TARGET_EMAIL_CONTAINS
         sync: false
+      - key: CASE_CONTEXT_PATH
+        value: "CASE_CONTEXT.md"
+      - key: CASE_CONTEXT_EXTRA
+        sync: false
       - key: MAX_REPLIES_PER_DAY
         value: "12"
       - key: MAX_TOTAL_REPLIES
         value: "30"
+      - key: MAX_CONTEXT_MESSAGES
+        value: "80"
       - key: AI_PROVIDER_ORDER
         value: "gemini,groq"
       - key: GEMINI_API_KEY
