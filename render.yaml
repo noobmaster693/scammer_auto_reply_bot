@@ -1,0 +1,42 @@
+services:
+  - type: worker
+    name: scammer-auto-reply-bot
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: BOT_ENABLED
+        value: "false"
+      - key: DRY_RUN
+        value: "true"
+      - key: LOG_CONTENT
+        value: "false"
+      - key: POLL_INTERVAL_SECONDS
+        value: "120"
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_APP_PASSWORD
+        sync: false
+      - key: EMAIL_FROM_NAME
+        sync: false
+      - key: IGNORE_BEFORE_UTC
+        sync: false
+      - key: TARGET_SUBJECT_CONTAINS
+        sync: false
+      - key: TARGET_EMAIL_CONTAINS
+        sync: false
+      - key: MAX_REPLIES_PER_DAY
+        value: "12"
+      - key: MAX_TOTAL_REPLIES
+        value: "30"
+      - key: AI_PROVIDER_ORDER
+        value: "gemini,groq"
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: "gemini-2.5-flash"
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: "openai/gpt-oss-120b"
