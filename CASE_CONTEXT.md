@@ -17,9 +17,9 @@ This file is background memory for the reply model. It is **not proof that the e
 - When asked for the pickup address, the seller supplied: **Kirchstrasse 55, 3952, Leuk**.
 - The postal locality for 3952 is more specifically **Susten**, in the municipality of Leuk, Valais, Switzerland.
 - Public/business-directory research associated **Remo Bilgischer** with **Kirchstrasse 55, 3952 Susten**.
-- Earlier public-register research found a sole proprietorship under Remo Bilgischer connected to that address and automotive activity: purchase/sale of vehicles, bodywork and repair work. The address has been publicly connected with him since at least **10 January 2012**.
+- Current public-register information shows an active sole proprietorship under Remo Bilgischer at that address. Its registered purpose includes purchase/sale of vehicles of all kinds, bodywork and repair work. The commercial-register entry dates to **10 January 2012**.
 - This makes the address a real, long-standing address connected to a real person/business. It does **not** prove the email sender is that person.
-- An uploaded 2018 Thyon 2000 condominium general-meeting document gives additional historical corroboration of the address. It records Remo Bilgischer (spelled once as **Bildgischer** in the delegate list) as a delegate for the **Sallier** building and lists **Kirchstrasse 55, 3952 Susten** as his contact address, with apartment/reference **S 29**.
+- An uploaded 2018 Thyon 2000 condominium general-meeting document gives additional historical corroboration of the address. It records Remo Bilgischer (spelled once as **Bildgischer** in the delegate list) as a delegate for the **Sallier** building and lists **Kirchstrasse 55, 3952 Susten** as his contact address.
 - The same 2018 document says he was elected as a Sallier delegate for the 2018–2019 period.
 - Do not expose personal contact details found in historical documents unless the buyer explicitly put them into the email conversation. They are background verification only.
 
@@ -56,7 +56,7 @@ This file is background memory for the reply model. It is **not proof that the e
 
 ## Important inconsistencies / questions to remember
 
-- The listing was presented to the buyer as being in/around **Geneva**, but the pickup address supplied was in **Susten/Leuk**, roughly a different part of Switzerland.
+- The listing was presented to the buyer as being in/around **Geneva**, but the pickup address supplied was in **Susten/Leuk**, a different part of Switzerland.
 - The sender later said they **do not work in Geneva**.
 - Their explanation was that they **were in Geneva**, which is why the listing was on Geneva. This does not by itself explain where the laptop physically was when pickup was offered.
 - A concrete pickup and on-site test were initially offered, but after distance became a problem the conversation quickly changed to shipment and then a request for a **70 CHF upfront deposit**.
